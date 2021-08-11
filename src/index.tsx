@@ -15,6 +15,7 @@ export interface IDotContainerProps {
     sizeRatio?:number;
     activeDotColor:string;
     vertical?:boolean;
+    isRTL:boolean;
 }
 
 const ONE_EMPTY_DOT_SIZE = defaultEmptyDotSize * defaultEmptyDotSize;
@@ -54,9 +55,10 @@ class DotContainer extends React.Component<IDotContainerProps>{
         const container = this.getContainerStyle();
 
         if (maxPage < 5) {
+            let tempList = this.props.isRTL? list.slice(0).reverse() : list
             return (
                 <View style={ container }>
-                    { list.map(i => {
+                    { tempList.map(i => {
                         return (
                             <Dot
                                 key={ i }
